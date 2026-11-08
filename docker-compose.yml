@@ -1,0 +1,15 @@
+﻿services:
+  webui:
+    build: ./webui
+    container_name: webui_webl2d
+    ports:
+      - "${WEB_PORT:-8987}:8000"
+    volumes:
+      - ./asset:/assets:ro
+    environment:
+      ASSET_DIR: /assets
+      TZ: ${TZ:-Asia/Shanghai}
+      LLM_API_BASE: ${LLM_API_BASE:-}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+    restart: unless-stopped
